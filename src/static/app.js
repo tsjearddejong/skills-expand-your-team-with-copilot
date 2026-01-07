@@ -521,6 +521,9 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    // Escape description for HTML attributes
+    const escapedDescription = details.description.replace(/"/g, '&quot;');
+
     activityCard.innerHTML = `
       ${tagHtml}
       <h4>${name}</h4>
@@ -556,10 +559,10 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
       <div class="share-buttons">
         <span class="share-label">Share:</span>
-        <button class="share-button share-twitter" data-activity="${name}" data-description="${details.description.replace(/"/g, '&quot;')}" aria-label="Share on Twitter">𝕏</button>
-        <button class="share-button share-facebook" data-activity="${name}" data-description="${details.description.replace(/"/g, '&quot;')}" aria-label="Share on Facebook">f</button>
-        <button class="share-button share-email" data-activity="${name}" data-description="${details.description.replace(/"/g, '&quot;')}" aria-label="Share via Email">✉</button>
-        <button class="share-button share-copy" data-activity="${name}" data-description="${details.description.replace(/"/g, '&quot;')}" aria-label="Copy link">🔗</button>
+        <button class="share-button share-twitter" data-activity="${name}" data-description="${escapedDescription}" aria-label="Share on Twitter">𝕏</button>
+        <button class="share-button share-facebook" data-activity="${name}" data-description="${escapedDescription}" aria-label="Share on Facebook">f</button>
+        <button class="share-button share-email" data-activity="${name}" data-description="${escapedDescription}" aria-label="Share via Email">✉</button>
+        <button class="share-button share-copy" data-activity="${name}" data-description="${escapedDescription}" aria-label="Copy link">🔗</button>
       </div>
       <div class="activity-card-actions">
         ${
@@ -824,6 +827,7 @@ document.addEventListener("DOMContentLoaded", () => {
     textArea.select();
     
     try {
+      // Note: document.execCommand is deprecated but kept for legacy browser support
       document.execCommand('copy');
       showMessage('Link copied to clipboard!', 'success');
     } catch (err) {
