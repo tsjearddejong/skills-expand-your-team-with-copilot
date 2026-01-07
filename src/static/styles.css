@@ -30,6 +30,11 @@
   --error-light: #ffebee;
   --info: #0c5460;
   --info-light: #d1ecf1;
+
+  /* Header control positioning */
+  --header-control-top: 10px;
+  --header-control-right: 15px;
+  --dark-mode-toggle-size: 40px;
 }
 
 /* Dark mode color palette */
@@ -649,8 +654,8 @@ footer {
 /* User controls in header */
 #user-controls {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: var(--header-control-top);
+  right: calc(var(--header-control-right) + var(--dark-mode-toggle-size) + 10px);
 }
 
 #user-status {
@@ -702,13 +707,13 @@ footer {
 /* Dark mode toggle */
 #dark-mode-toggle {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: var(--header-control-top);
+  right: var(--header-control-right);
   background-color: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: var(--dark-mode-toggle-size);
+  height: var(--dark-mode-toggle-size);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -721,9 +726,4 @@ footer {
 #dark-mode-toggle:hover {
   background-color: rgba(255, 255, 255, 0.3);
   transform: scale(1.1);
-}
-
-/* Adjust user controls position when dark mode toggle is present */
-#user-controls {
-  right: 65px;
 }
